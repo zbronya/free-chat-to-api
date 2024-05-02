@@ -48,4 +48,6 @@ func InitRouter(g *gin.Engine) {
 	g.Use(RequestLogger)
 	g.OPTIONS("/v1/chat/completions")
 	g.POST("/v1/chat/completions", chat.Completions)
+	g.POST("/backend-anon/sentinel/chat-requirements", chat.ReverseProxy)
+	g.POST("/backend-anon/conversation", chat.ReverseProxy)
 }
