@@ -34,8 +34,9 @@ func RequestLogger(c *gin.Context) {
 
 func InitRouter(g *gin.Engine) {
 	g.GET("/", func(c *gin.Context) {
-		c.String(http.StatusOK, "This is Free Chat To API \n"+
-			"https://github.com/zbronya/free-chat-to-api")
+		c.String(http.StatusOK,
+			"This is Free Chat To API \n"+
+				"https://github.com/zbronya/free-chat-to-api")
 	})
 
 	g.GET("/ping", func(c *gin.Context) {
