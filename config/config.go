@@ -17,7 +17,7 @@ func init() {
 	_ = godotenv.Load()
 	Bind = os.Getenv("BIND")
 	if Bind == "" {
-		Bind = "127.0.0.1"
+		Bind = "0.0.0.0"
 	}
 
 	Port = os.Getenv("PORT")
