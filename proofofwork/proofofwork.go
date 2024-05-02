@@ -8,6 +8,7 @@ import (
 	"golang.org/x/crypto/sha3"
 	"math/rand"
 	"time"
+	_ "time/tzdata"
 )
 
 var (
