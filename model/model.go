@@ -3,7 +3,7 @@ package model
 import (
 	"github.com/google/uuid"
 	"github.com/zbronya/free-chat-to-api/model/request"
-	v1 "github.com/zbronya/free-chat-to-api/utils"
+	"github.com/zbronya/free-chat-to-api/utils"
 )
 
 type ChatRequirementReq struct {
@@ -74,7 +74,7 @@ func ApiReqToChatReq(req *request.ChatRequest) (chatReq *ChatCompletionRequest) 
 		Action:                     "next",
 		Messages:                   messages,
 		ParentMessageId:            uuid.New().String(),
-		Model:                      v1.MappingModel(req.Model),
+		Model:                      utils.MappingModel(req.Model),
 		TimeZoneOffsetMin:          -180,
 		Suggestions:                make([]string, 0),
 		HistoryAndTrainingDisabled: true,

@@ -25,7 +25,7 @@ func init() {
 		Port = "8484"
 	}
 
-	ProxyUrl = os.Getenv("PROXY")
+	ProxyUrl = os.Getenv("PROXY_URL")
 
 	GatewayUrl = os.Getenv("GATEWAY_URL")
 	if GatewayUrl == "" {
