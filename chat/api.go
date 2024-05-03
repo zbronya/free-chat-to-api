@@ -72,6 +72,11 @@ func doConversation(c *gin.Context, client *httpclient.ReqClient, req *request.C
 		return
 	}
 
+	if resp.StatusCode != 200 {
+		utils.ErrorResp(c, http.StatusInternalServerError, "fail to completions", nil)
+		return
+	}
+
 	if req.Stream {
 		conversationStream(c, req, resp)
 	} else {
@@ -101,9 +106,9 @@ func getChatRequirement(c *gin.Context, client httpclient.HttpClient, req model.
 		return nil, err
 	}
 
-	if resp.StatusCode == 401 {
-		utils.ErrorResp(c, http.StatusUnauthorized, "Unauthorized", err)
-		return nil, errors.New("Unauthorized")
+	if resp.StatusCode != 200 {
+		utils.ErrorResp(c, http.StatusInternalServerError, "fail to get chat requirements", nil)
+		return nil, errors.New("fail to get chat requirements")
 	}
 
 	defer resp.Body.Close()
