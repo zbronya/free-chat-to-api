@@ -15,6 +15,7 @@ import (
 	"github.com/zbronya/free-chat-to-api/model/response"
 	"github.com/zbronya/free-chat-to-api/proofofwork"
 	"github.com/zbronya/free-chat-to-api/utils"
+	"io"
 	"net/http"
 	"strings"
 	"time"
@@ -73,8 +74,8 @@ func doConversation(c *gin.Context, client *httpclient.ReqClient, req *request.C
 	}
 
 	if resp.StatusCode != 200 {
-		logger.GetLogger().Error(fmt.Sprintf("fail to completions, status code: %d", resp.StatusCode))
-		utils.ErrorResp(c, http.StatusInternalServerError, "fail to completions", nil)
+		body, _ := io.ReadAll(resp.Body)
+		utils.ErrorResp(c, resp.StatusCode, string(body), nil)
 		return
 	}
 
@@ -108,8 +109,8 @@ func getChatRequirement(c *gin.Context, client httpclient.HttpClient, req model.
 	}
 
 	if resp.StatusCode != 200 {
-		logger.GetLogger().Error(fmt.Sprintf("fail to get chat requirements, status code: %d", resp.StatusCode))
-		utils.ErrorResp(c, http.StatusInternalServerError, "fail to get chat requirements", nil)
+		body, _ := io.ReadAll(resp.Body)
+		utils.ErrorResp(c, resp.StatusCode, string(body), nil)
 		return nil, errors.New("fail to get chat requirements")
 	}
 
