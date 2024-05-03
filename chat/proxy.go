@@ -8,11 +8,10 @@ import (
 	"net/url"
 )
 
-var targetURL, _ = url.Parse("https://chat.openai.com")
-
 var client = httpclient.NewReqClient()
 
 func ReverseProxy(c *gin.Context) {
+	var targetURL, _ = url.Parse("https://chat.openai.com")
 	targetURL.Path = c.Request.URL.Path
 	targetURL.RawQuery = c.Request.URL.RawQuery
 
@@ -27,7 +26,7 @@ func ReverseProxy(c *gin.Context) {
 	resp, err := client.Post(targetURL.String(), headers, body)
 
 	if err != nil {
-		utils.ErrorResp(c, 500, "fail to completions", err)
+		utils.ErrorResp(c, 500, "fail to proxy", err)
 		return
 	}
 
