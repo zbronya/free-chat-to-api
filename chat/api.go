@@ -73,6 +73,7 @@ func doConversation(c *gin.Context, client *httpclient.ReqClient, req *request.C
 	}
 
 	if resp.StatusCode != 200 {
+		logger.GetLogger().Error(fmt.Sprintf("fail to completions, status code: %d", resp.StatusCode))
 		utils.ErrorResp(c, http.StatusInternalServerError, "fail to completions", nil)
 		return
 	}
@@ -107,6 +108,7 @@ func getChatRequirement(c *gin.Context, client httpclient.HttpClient, req model.
 	}
 
 	if resp.StatusCode != 200 {
+		logger.GetLogger().Error(fmt.Sprintf("fail to get chat requirements, status code: %d", resp.StatusCode))
 		utils.ErrorResp(c, http.StatusInternalServerError, "fail to get chat requirements", nil)
 		return nil, errors.New("fail to get chat requirements")
 	}
