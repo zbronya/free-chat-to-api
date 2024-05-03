@@ -3,7 +3,6 @@ package chat
 import (
 	"github.com/gin-gonic/gin"
 	"github.com/zbronya/free-chat-to-api/httpclient"
-	"github.com/zbronya/free-chat-to-api/logger"
 	"github.com/zbronya/free-chat-to-api/utils"
 	"io"
 	"net/url"
@@ -45,9 +44,6 @@ func ReverseProxy(c *gin.Context) {
 	headers["Host"] = targetURL.Host
 
 	body, _ := io.ReadAll(c.Request.Body)
-	logger.GetLogger().Info("Request body: ", string(body))
-	logger.GetLogger().Info("Request headers: ", headers)
-	logger.GetLogger().Info("Request URL: ", targetURL.String())
 	resp, err := client.Post(targetURL.String(), headers, body)
 
 	if err != nil {
