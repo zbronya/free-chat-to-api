@@ -29,7 +29,7 @@ func init() {
 
 	GatewayUrl = os.Getenv("GATEWAY_URL")
 	if GatewayUrl == "" {
-		GatewayUrl = "https://chat.openai.com"
+		GatewayUrl = "https://chatgpt.com"
 	} else {
 		GatewayUrl = strings.TrimRight(GatewayUrl, "/")
 	}

@@ -14,9 +14,9 @@ import (
 var (
 	cores   = []int{8, 12, 16, 24, 32}
 	screens = []int{3000, 4000, 6000}
-	script  = "https://cdn.oaistatic.com/_next/static/UGPVT2pHJvV10GFXLQJ-H/_ssgManifest.js?dpl=61795df7b34494cdf55bd45e3973183b0a174e5b"
+	script  = "https://cdn.oaistatic.com/_next/static/chunks/main-c5c262a33e3f13d2.js?dpl=baf36960d05dde6d8b941194fa4093fb5cb78c6a"
 
-	dpl = "61795df7b34494cdf55bd45e3973183b0a174e5b"
+	dpl = "baf36960d05dde6d8b941194fa4093fb5cb78c6a"
 
 	errorPrefix = "gAAAAABwQ8Lk5FbGpA2NcR9dShT6gYjU7VxZ4D"
 )
