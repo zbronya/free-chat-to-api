@@ -30,7 +30,7 @@ var headersFilterList = map[string]bool{
 }
 
 func ReverseProxy(c *gin.Context) {
-	var targetURL, _ = url.Parse("https://chatgpt.com")
+	var targetURL, _ = url.Parse("https://chat.openai.com")
 	targetURL.Path = c.Request.URL.Path
 	targetURL.RawQuery = c.Request.URL.RawQuery
 

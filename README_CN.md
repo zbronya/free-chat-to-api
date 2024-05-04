@@ -29,4 +29,4 @@ curl 'http://127.0.0.1:8484/v1/chat/completions' \
 - `PORT` - port to listen on (default: `8484`)
 - `BIND` - address to bind to (default: `0.0.0.0`)
 - `PROXY_URL` - proxy url
-- `GATEWAY_URL` - gateway url (default: `https://chatgpt.com`)
+- `GATEWAY_URL` - gateway url (default: `https://chat.openai.com`)

@@ -58,9 +58,9 @@ func doConversation(c *gin.Context, client *httpclient.ReqClient, req *request.C
 		"Oai-Language":    "en-US",
 		"Openai-Sentinel-Chat-Requirements-Token": requirement.Token,
 		"Openai-Sentinel-Proof-Token":             token,
-		"Origin":                                  "https://chatgpt.com",
+		"Origin":                                  "https://chat.openai.com",
 		"Priority":                                "u=1, i",
-		"Referer":                                 "https://chatgpt.com/",
+		"Referer":                                 "https://chat.openai.com/",
 		"User-Agent":                              ua,
 	}
 
@@ -95,8 +95,8 @@ func getChatRequirement(c *gin.Context, client httpclient.HttpClient, req model.
 		"Content-Type":    "application/json",
 		"Oai-Device-Id":   deviceId,
 		"Oai-Language":    "en-US",
-		"Origin":          "https://chatgpt.com",
-		"Referer":         "https://chatgpt.com/",
+		"Origin":          "https://chat.openai.com",
+		"Referer":         "https://chat.openai.com/",
 		"User-Agent":      ua,
 	}
 
