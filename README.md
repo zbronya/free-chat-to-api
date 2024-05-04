@@ -2,6 +2,9 @@
 
 [中文文档](README_CN.md)
 
+## Service Status
+Latest service running status https://uptime-kuma.bronya.io/status/free-chat-to-api
+
 ## Features
 - free chat to api
 - free chat gateway
