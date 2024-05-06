@@ -36,5 +36,5 @@ curl 'http://127.0.0.1:8484/v1/chat/completions' \
 - `PROXY_URL` - proxy url
 - `GATEWAY_URL` - gateway url (default: `https://chatgpt.com`)
 
-## what's next
+## What's next
 - [使用TunnelBroker提供的免费/48的ipv6解决chat-to-api的429问题](https://bronya.io/chat-to-api-solving-429/)
