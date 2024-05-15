@@ -6,9 +6,11 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/allegro/bigcache"
+	"github.com/zbronya/free-chat-to-api/logger"
 	"github.com/zbronya/free-chat-to-api/model"
 	"golang.org/x/crypto/sha3"
 	"math/rand"
+	"strings"
 	"time"
 	_ "time/tzdata"
 )
@@ -47,6 +49,14 @@ func GetChatRequirementReq(config []interface{}) model.ChatRequirementReq {
 	result, err := cache.Get("config")
 	if err != nil {
 		tmp := CalcProofToken(config, seed, "000000")
+
+		if strings.HasPrefix(tmp, errorPrefix) {
+			logger.GetLogger().Warn("CalcProofToken config: " + tmp)
+			return model.ChatRequirementReq{
+				P: tmp,
+			}
+		}
+
 		cache.Set("config", []byte(tmp))
 		return model.ChatRequirementReq{
 			P: "gAAAAAC" + tmp,
