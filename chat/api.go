@@ -105,7 +105,7 @@ func getChatRequirement(c *gin.Context, client httpclient.HttpClient, req model.
 
 	resp, err := client.Post(url, header, j)
 	if err != nil {
-		utils.ErrorResp(c, http.StatusInternalServerError, "fail to get chat requirements", err)
+		utils.ErrorResp(c, http.StatusInternalServerError, "fail to get chat requirements", nil)
 		return nil, err
 	}
 

@@ -16,13 +16,13 @@ import (
 )
 
 var (
-	cores   = []int{8, 12, 16, 24, 32}
+	cores   = []int{1, 2, 4, 8}
 	screens = []int{3000, 4000, 6000}
 	script  = "https://cdn.oaistatic.com/_next/static/chunks/main-c5c262a33e3f13d2.js?dpl=a44a6d28cfe80fc54efc0ce87573ae13d9b8e9bd"
 
 	dpl = "a44a6d28cfe80fc54efc0ce87573ae13d9b8e9bd"
 
-	errorPrefix = "gAAAAABwQ8Lk5FbGpA2NcR9dShT6gYjU7VxZ4D"
+	errorPrefix = "wQ8Lk5FbGpA2NcR9dShT6gYjU7VxZ4D"
 )
 
 var cache, _ = bigcache.NewBigCache(bigcache.DefaultConfig(1 * time.Hour))
@@ -43,11 +43,16 @@ func GetConfig(ua string) []interface{} {
 }
 
 func GetChatRequirementReq(config []interface{}) model.ChatRequirementReq {
-	randomFloat := rand.Float64()
-	seed := fmt.Sprintf("%.6f", randomFloat)
 
 	result, err := cache.Get("config")
+
+	return model.ChatRequirementReq{
+		P: "gAAAAACWzIzNDgsIldlZCBNYXkgMTUgMjAyNCAwOToyMzoxNiBHTVQrMDgwMCAo5Lit5Zu95qCH5YeG5pe26Ze0KSIsNDI5NDcwNTE1MiwyMywiTW96aWxsYS81LjAgKE1hY2ludG9zaDsgSW50ZWwgTWFjIE9TIFggMTBfMTVfNykgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzEyNC4wLjAuMCBTYWZhcmkvNTM3LjM2IiwiaHR0cHM6Ly9jZG4ub2Fpc3RhdGljLmNvbS9fbmV4dC9zdGF0aWMvY2h1bmtzL21haW4tMGI1NjAxZWMwOWVlYzc4Yi5qcz9kcGw9N2M3NDBjOTgxY2JkMWYyODZkYjhiY2JkMDNjYTBmMDI5OWQ4MTBmYiIsImRwbD03Yzc0MGM5ODFjYmQxZjI4NmRiOGJjYmQwM2NhMGYwMjk5ZDgxMGZiIiwiemgtQ04iLCJ6aC1DTix6aCxlbiIsMjMyLCJ3ZWJraXRQZXJzaXN0ZW50U3RvcmFnZeKIkltvYmplY3QgRGVwcmVjYXRlZFN0b3JhZ2VRdW90YV0iLCJsb2NhdGlvbiIsIm91dGVyV2lkdGgiXQ==",
+	}
+
 	if err != nil {
+		randomFloat := rand.Float64()
+		seed := fmt.Sprintf("%.6f", randomFloat)
 		tmp := CalcProofToken(config, seed, "000000")
 
 		if strings.HasPrefix(tmp, errorPrefix) {
