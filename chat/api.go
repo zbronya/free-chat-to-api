@@ -40,7 +40,7 @@ func Completions(c *gin.Context) {
 		return
 	}
 
-	token := proofofwork.CalcProofToken(pConfig, requirement.Proof.Seed, requirement.Proof.Difficulty)
+	token := "gAAAAAB" + proofofwork.CalcProofToken(pConfig, requirement.Proof.Seed, requirement.Proof.Difficulty)
 
 	doConversation(c, client, req, requirement, ua, deviceId, token)
 }
