@@ -5,6 +5,7 @@ import (
 	"encoding/hex"
 	"encoding/json"
 	"fmt"
+	"github.com/allegro/bigcache"
 	"github.com/zbronya/free-chat-to-api/model"
 	"golang.org/x/crypto/sha3"
 	"math/rand"
@@ -21,6 +22,8 @@ var (
 
 	errorPrefix = "gAAAAABwQ8Lk5FbGpA2NcR9dShT6gYjU7VxZ4D"
 )
+
+var cache, _ = bigcache.NewBigCache(bigcache.DefaultConfig(1 * time.Hour))
 
 func getParseTime() string {
 	loc, _ := time.LoadLocation("America/Los_Angeles")
@@ -41,10 +44,17 @@ func GetChatRequirementReq(config []interface{}) model.ChatRequirementReq {
 	randomFloat := rand.Float64()
 	seed := fmt.Sprintf("%.6f", randomFloat)
 
-	result := CalcProofToken(config, seed, "000000")
-
-	return model.ChatRequirementReq{
-		P: "gAAAAAC" + result,
+	result, err := cache.Get("config")
+	if err != nil {
+		tmp := CalcProofToken(config, seed, "000000")
+		cache.Set("config", []byte(tmp))
+		return model.ChatRequirementReq{
+			P: "gAAAAAC" + tmp,
+		}
+	} else {
+		return model.ChatRequirementReq{
+			P: "gAAAAAC" + string(result),
+		}
 	}
 }
 
