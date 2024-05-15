@@ -23,6 +23,8 @@ type ChatRequirementRes struct {
 		Required bool   `json:"required"`
 		DX       string `json:"dx"`
 	} `json:"arkose"`
+	// default false
+	ForceLogin bool `json:"force_login"`
 }
 
 type ChatAuthor struct {

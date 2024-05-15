@@ -40,6 +40,11 @@ func Completions(c *gin.Context) {
 		return
 	}
 
+	if requirement.ForceLogin {
+		utils.ErrorResp(c, http.StatusForbidden, "force login", nil)
+		return
+	}
+
 	token := "gAAAAAB" + proofofwork.CalcProofToken(pConfig, requirement.Proof.Seed, requirement.Proof.Difficulty)
 
 	doConversation(c, client, req, requirement, ua, deviceId, token)
