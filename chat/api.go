@@ -75,7 +75,7 @@ func doConversation(c *gin.Context, client *httpclient.ReqClient, req *request.C
 	resp, err := client.Post(url, header, j)
 
 	if err != nil {
-		utils.ErrorResp(c, http.StatusInternalServerError, "fail to completions", err)
+		utils.ErrorResp(c, http.StatusInternalServerError, "fail to completions", nil)
 		return
 	}
 
@@ -140,7 +140,7 @@ func conversationStream(c *gin.Context, req *request.ChatRequest, resp *http.Res
 		event, err := decoder.Decode()
 		if err != nil {
 			logger.GetLogger().Error(err.Error())
-			utils.ErrorResp(c, http.StatusInternalServerError, "", err)
+			utils.ErrorResp(c, http.StatusInternalServerError, "", nil)
 			break
 		}
 		name := event.Event()
@@ -175,7 +175,7 @@ func conversationStream(c *gin.Context, req *request.ChatRequest, resp *http.Res
 		err = json.Unmarshal([]byte(data), chatResp)
 		if chatResp.Error != nil && !handlingSigns {
 			logger.GetLogger().Error(fmt.Sprint(chatResp.Error))
-			utils.ErrorResp(c, http.StatusInternalServerError, "", chatResp.Error)
+			utils.ErrorResp(c, http.StatusInternalServerError, "", nil)
 			return
 		}
 		if err != nil {
@@ -226,7 +226,7 @@ func conversation(c *gin.Context, req *request.ChatRequest, resp *http.Response)
 		event, err := decoder.Decode()
 		if err != nil {
 			logger.GetLogger().Error(err.Error())
-			utils.ErrorResp(c, http.StatusInternalServerError, "", err)
+			utils.ErrorResp(c, http.StatusInternalServerError, "", nil)
 			break
 		}
 		data := event.Data()
@@ -263,7 +263,7 @@ func conversation(c *gin.Context, req *request.ChatRequest, resp *http.Response)
 		err = json.Unmarshal([]byte(data), chatResp)
 		if chatResp.Error != nil && !handlingSigns {
 			logger.GetLogger().Error(fmt.Sprint(chatResp.Error))
-			utils.ErrorResp(c, http.StatusInternalServerError, "", chatResp.Error)
+			utils.ErrorResp(c, http.StatusInternalServerError, "", nil)
 			return
 		}
 		if err != nil {
