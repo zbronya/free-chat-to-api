@@ -4,7 +4,7 @@ import (
 	"encoding/base64"
 	"encoding/hex"
 	"encoding/json"
-	"fmt"
+	"github.com/google/uuid"
 	"github.com/zbronya/free-chat-to-api/model"
 	"golang.org/x/crypto/sha3"
 	"math/rand"
@@ -52,11 +52,11 @@ func GetConfig(ua string) []interface{} {
 }
 
 func GetChatRequirementReq(config []interface{}) model.ChatRequirementReq {
-	randomFloat := rand.Float64()
-	seed := fmt.Sprintf("%.6f", randomFloat)
-	token := CalcProofToken(config, seed, "0")
+	//randomFloat := rand.Float64()
+	//seed := fmt.Sprintf("%.6f", randomFloat)
+	//token := CalcProofToken(config, seed, "0")
 	return model.ChatRequirementReq{
-		P: token,
+		P: "hello openai" + uuid.NewString(),
 	}
 
 }
