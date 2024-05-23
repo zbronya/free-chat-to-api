@@ -15,9 +15,9 @@ import (
 var (
 	cores   = []int{1, 2, 4, 8}
 	screens = []int{3000, 4000, 6000}
-	script  = "https://cdn.oaistatic.com/_next/static/chunks/2565-9cf19ba0b7d24a5d.js?dpl=7c740c981cbd1f286db8bcbd03ca0f0299d810fb"
+	script  = "https://cdn.oaistatic.com/_next/static/chunks/2565-9cf19ba0b7d24a5d.js?dpl=4811fd1c94b550c8f03fcc863ee6c1a99940efc5"
 
-	dpl = "7c740c981cbd1f286db8bcbd03ca0f0299d810fb"
+	dpl = "4811fd1c94b550c8f03fcc863ee6c1a99940efc5"
 
 	errorPrefix = "gAAAAABwQ8Lk5FbGpA2NcR9dShT6gYjU7VxZ4D"
 )
@@ -46,7 +46,9 @@ func GetConfig(ua string) []interface{} {
 		0,
 		"updateAdInterestGroups−function updateAdInterestGroups() { [native code] }",
 		"location",
-		"__NEXT_PRELOADREADY"}
+		"__NEXT_PRELOADREADY",
+		885.6999999880791,
+	}
 }
 
 func GetChatRequirementReq(config []interface{}) model.ChatRequirementReq {
@@ -54,8 +56,9 @@ func GetChatRequirementReq(config []interface{}) model.ChatRequirementReq {
 	seed := fmt.Sprintf("%.6f", randomFloat)
 	token := CalcProofToken(config, seed, "0")
 	return model.ChatRequirementReq{
-		P: "gAAAAAC" + token,
+		P: token,
 	}
+
 }
 
 func CalcProofToken(config []interface{}, seed string, diff string) string {
